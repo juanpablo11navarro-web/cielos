@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cielo Estelar</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;font-family:'Courier New',Courier,monospace;}
+        body{background:#061a3a;color:#f4f8fb;min-height:100vh;display:flex;flex-direction:column;align-items:center;overflow-x:hidden;}
+        .container{width:94%;max-width:1050px;margin:20px auto;border:2px solid rgba(255,255,255,0.3);border-radius:8px;padding:20px;background:rgba(6,26,58,0.9);box-shadow:0 10px 30px rgba(0,0,0,0.5);}
+        header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,0.2);padding-bottom:15px;margin-bottom:20px;flex-wrap:wrap;gap:10px;}
+        .logo{font-size:1.1rem;font-weight:bold;}
+        nav{display:flex;gap:15px;flex-wrap:wrap;}
+        nav a{color:#f4f8fb;text-decoration:none;font-size:0.9rem;cursor:pointer;border-bottom:2px solid transparent;padding-bottom:2px;transition:0.3s;}
+        nav a:hover,nav a.active{border-bottom-color:#f4f8fb;}
+        .section{display:none;}
+        .section.active{display:block;animation:fadeIn 0.4s ease;}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+        h2{text-align:center;margin-bottom:20px;font-size:1.8rem;font-weight:normal;}
+        .frame{border:1px solid rgba(255,255,255,0.3);border-radius:6px;padding:15px;text-align:center;background:rgba(2,10,25,0.4);margin-bottom:20px;}
+        .btn-row{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;}
+        .btn{background:transparent;color:#f4f8fb;border:1px solid rgba(255,255,255,0.7);padding:10px 20px;border-radius:6px;cursor:pointer;font-size:0.95rem;transition:0.3s;display:flex;align-items:center;gap:8px;}
+        .btn:hover{background:rgba(255,255,255,0.15);box-shadow:0 0 10px rgba(255,255,255,0.3);}
+        /* Estilos específicos vistas */
+        .planisphere{width:240px;height:240px;border:2px solid #fff;border-radius:50%;margin:0 auto 20px auto;position:relative;display:flex;align-items:center;justify-content:center;animation:rot 50s linear infinite;background:radial-gradient(#09204a,#040e22);}
+        @keyframes rot{from{transform:rotate(0);}to{transform:rotate(360deg);}}
+        .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px;}
+        .card-season{border:1px solid rgba(255,255,255,0.4);border-radius:6px;padding:12px;text-align:center;cursor:pointer;background:rgba(255,255,255,0.03);transition:0.3s;}
+        .card-season:hover{background:rgba(255,255,255,0.15);border-color:#fff;}
+        .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-bottom:20px;}
+        .card-guide{border:1px solid rgba(255,255,255,0.4);border-radius:6px;padding:15px;background:rgba(255,255,255,0.03);}
+        .card-guide h3{font-size:1rem;margin-bottom:8px;}
+        .card-guide p{font-size:0.85rem;opacity:0.85;line-height:1.3;}
+        .const-strip{display:flex;justify-content:space-around;border:1px solid rgba(255,255,255,0.4);border-radius:6px;padding:15px;margin-top:15px;flex-wrap:wrap;gap:10px;}
+        .const-item{text-align:center;cursor:pointer;font-size:0.85rem;padding:8px;}
+        .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:25px;align-items:center;}
+        .form-input{background:transparent;border:none;border-bottom:1px solid rgba(255,255,255,0.6);padding:8px;color:#fff;width:100%;margin-bottom:12px;outline:none;}
+        textarea.form-input{height:70px;resize:none;}
+        @media(max-width:768px){.grid-4,.grid-3,.contact-grid{grid-template-columns:1fr;}}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">✦ Cielo Estelar</div>
+            <nav>
+                <a onclick="tab('inicio')" id="n-inicio" class="active">Inicio</a>
+                <a onclick="tab('mapas')" id="n-mapas">Mapas</a>
+                <a onclick="tab('guia')" id="n-guia">Guía</a>
+                <a onclick="tab('contacto')" id="n-contacto">Contacto</a>
+            </nav>
+        </header>
+
+        <!-- INICIO -->
+        <div id="inicio" class="section active">
+            <div style="text-align:center;margin-bottom:15px;">
+                <h1>Cielo Estelar</h1>
+                <p style="font-size:0.95rem;opacity:0.8;margin-top:5px;">Explora el universo y conecta con el cielo.</p>
+            </div>
+            <div class="frame">
+                <svg viewBox="0 0 600 200" style="width:100%;height:auto;">
+                    <circle cx="100" cy="40" r="1.5" fill="#fff"/><circle cx="300" cy="30" r="2" fill="#fff"/><circle cx="500" cy="50" r="1.5" fill="#fff"/>
+                    <polyline points="420,40 450,30 480,45 500,70 460,65 450,30" stroke="rgba(255,255,255,0.6)" stroke-width="1" fill="none"/>
+                    <path d="M0,170 Q150,140 300,160 T600,150 L600,200 L0,200 Z" fill="#040e22" stroke="rgba(255,255,255,0.3)"/>
+                    <path d="M185,160 C185,145 195,135 205,130 C215,135 220,145 220,160 Z" fill="#061a3a" stroke="#fff" stroke-width="1.2"/>
+                    <circle cx="205" cy="123" r="6" fill="#061a3a" stroke="#fff" stroke-width="1.2"/>
+                </svg>
+            </div>
+            <div class="btn-row">
+                <button class="btn" onclick="tab('mapas')">Explorar Mapas</button>
+                <button class="btn" onclick="tab('guia')">Comenzar a observar</button>
+                <button class="btn" onclick="tab('guia')">Ver constelaciones</button>
+            </div>
+        </div>
+
+        <!-- MAPAS -->
+        <div id="mapas" class="section">
+            <h2>═ Mapas Estelares ═</h2>
+            <div class="planisphere">
+                <svg width="200" height="200" viewBox="0 0 100 100" style="position:absolute;">
+                    <circle cx="50" cy="50" r="42" stroke="rgba(255,255,255,0.4)" stroke-width="0.8" fill="none"/>
+                    <line x1="50" y1="8" x2="50" y2="92" stroke="rgba(255,255,255,0.2)" stroke-width="0.5"/>
+                    <line x1="8" y1="50" x2="92" y2="50" stroke="rgba(255,255,255,0.2)" stroke-width="0.5"/>
+                </svg>
+            </div>
+            <div class="grid-4">
+                <div class="card-season" onclick="alert('Primavera seleccionada')">❀<br><strong>Primavera</strong></div>
+                <div class="card-season" onclick="alert('Verano seleccionado')">☼<br><strong>Verano</strong></div>
+                <div class="card-season" onclick="alert('Otoño seleccionado')">🍃<br><strong>Otoño</strong></div>
+                <div class="card-season" onclick="alert('Invierno seleccionado')">❄<br><strong>Invierno</strong></div>
+            </div>
+            <div class="btn-row">
+                <button class="btn" onclick="alert('Descargando mapa...')">Descargar mapa</button>
+                <button class="btn" onclick="alert('Cielo despejado al sur')">Ver mapa de esta noche</button>
+            </div>
+        </div>
+
+        <!-- GUÍA -->
+        <div id="guia" class="section">
+            <h2>Guía de Observación</h2>
+            <div class="grid-3">
+                <div class="card-guide"><h3>⏱ Momento</h3><p>Al anochecer en lugar oscuro y alejado de luz.</p></div>
+                <div class="card-guide"><h3>🧭 Polar</h3><p>Ubica Ursa Major y usa las dos estrellas del Cazo.</p></div>
+                <div class="card-guide"><h3>🔭 Equipo</h3><p>Binoculares y ropa abrigadora.</p></div>
+            </div>
+            <div class="const-strip">
+                <div class="const-item" onclick="alert('Ursa Major')">⭐ Ursa Major</div>
+                <div class="const-item" onclick="alert('Casiopea')">⭐ Casiopea</div>
+                <div class="const-item" onclick="alert('Cygno')">⭐ Cygno</div>
+                <div class="const-item" onclick="alert('Escorpio')">⭐ Escorpio</div>
+                <div class="const-item" onclick="alert('Orión')">⭐ Orión</div>
+            </div>
+        </div>
+
+        <!-- CONTACTO -->
+        <div id="contacto" class="section">
+            <h2>Contacto</h2>
+            <div class="contact-grid">
+                <div style="text-align:center;">
+                    <svg viewBox="0 0 160 100" style="max-width:180px;margin-bottom:10px;">
+                        <rect x="10" y="10" width="140" height="80" fill="none" stroke="#fff" stroke-dasharray="3 3"/>
+                        <polyline points="10,10 80,55 150,10" fill="none" stroke="#fff"/>
+                    </svg>
+                    <p style="font-size:0.85ira;opacity:0.9;">✉ correo@cieloestelar.com<br>📍 Observatorio, Ciudad Estelar</p>
+                </div>
+                <form onsubmit="event.preventDefault(); alert('¡Enviado con éxito!');">
+                    <input type="text" class="form-input" placeholder="Nombre" required>
+                    <input type="email" class="form-input" placeholder="Correo" required>
+                    <input type="text" class="form-input" placeholder="Asunto" required>
+                    <textarea class="form-input" placeholder="Mensaje" required></textarea>
+                    <button type="submit" class="btn" style="width:100%;justify-content:center;">Enviar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function tab(id) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            document.getElementById('n-' + id).classList.add('active');
+            window.scrollTo({top:0, behavior:'smooth'});
+        }
+    </script>
+</body>
+</html>
